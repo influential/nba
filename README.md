@@ -1,2 +1,3 @@
 # nba
-Predictive Analytics for DFB
+
+a [Sails](http://sailsjs.org) application
