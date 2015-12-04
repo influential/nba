@@ -6,7 +6,7 @@ module.exports = {
 
 	attributes: {
 
-		playerID: 'integer'.
+		playerID: 'integer',
 
 		date: 'date',
 

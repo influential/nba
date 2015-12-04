@@ -58,37 +58,12 @@ module.exports = {
 	},
 
 	salary2015: function(req, res) {
-		PHO->PHX
-		NOR->NOP
-		SAC
-		IND
-		NYK
-		MIL
-		HOU
-		OKC
-		DET
-		LAL
-		ATL
-		GSW
-		TOR
-		POR
-		CHA
-		ORL
-		BOS
-		MIN
-		CLE
-		MIA
-		DAL
-		UTA
-		PHI
-		LAC
-		MEM
-		BKN
-		CHI
-		SAS
-		DEN
-		WAS
-
+		//PHO->PHX
+		//NOR->NOP
+		//example of creating entry
+		Player.create({playerID:123, team:"NOR", name:"hi"}).exec(function(err, created) {
+			console.log("Entry: " + created.id);
+		});
 	}
 
 };

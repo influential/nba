@@ -7,7 +7,7 @@ var http = require("http");
 module.exports = {
 
 	reference: function(req, res) {
-	var options = {
+	/*var options = {
 		host: "stats.nba.com",
 		port: 80,
 		path: ""
@@ -30,7 +30,7 @@ module.exports = {
 					}
 				});
 			}
-		});
+		});*/
 	}
 
 };
