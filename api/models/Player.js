@@ -8,9 +8,11 @@ module.exports = {
 
   		playerID: 'integer',
 
-  		team: 'string',
+  		teams: 'array',
 
-  		name: 'string'
+  		name: 'string',
+
+  		traded: 'boolean'
 
 	}
 
