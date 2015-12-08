@@ -16,8 +16,8 @@ module.exports = {
 				  	var selector = ".table-responsive table tbody .first a";
 				  	var nightmare = Nightmare({ show: true });
 				  	var link = yield nightmare
-				  		.wait(1000)
 				    	.goto(url)
+				    	.wait(1000)
 				    	.evaluate(function (selector) {
 				    		var names = [];
 				    		var list = document.querySelectorAll(selector);
@@ -71,6 +71,35 @@ module.exports = {
 		var teamName = ["BOS", "DAL", "BKN", "CHA", "CHI", "CLE", "ATL", "DEN", "DET", "GSW", "HOU", "IND", "LAC", "LAL", "MEM", "MIA", "MIL", "MIN", "NOP", "NYK", "OKC", "ORL", "PHI", "PHX", "POR", "SAC", "SAS", "TOR", "UTA", "WAS"];
 		var counter = 1;
 		teamLoop(teamID, teamName, counter, 0);
+	},
+
+	games: function(req, res) {
+
+		function gameLoop(id) {
+			if(id > 10) {
+				var url = "http://stats.nba.com/game/#!/" + id;
+				vo(function* () {
+				  	var selector = ".attendance div";
+				  	var nightmare = Nightmare({ show: true });
+				  	var link = yield nightmare
+				    	.goto(url)
+				    	.wait(1000)
+				    	.evaluate(function (selector) {
+				    		var query = document.querySelectorAll(selector);
+							return query[1].innerText;
+				    	}, selector);
+				  	yield nightmare.end();
+				  	return link;
+				})(function (err, result) {
+					console.log(result);
+					gameLoop(++id);
+				});
+			} else {
+				return
+			}
+		}
+
+		gameLoop(1);
 	}
 
 };

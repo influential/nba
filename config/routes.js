@@ -8,6 +8,8 @@ module.exports.routes = {
 
   '/salary': 'SalaryController.salary',
 
-  '/player' : 'PlayerController.reference'
+  '/player' : 'PlayerController.reference',
+
+  '/games' : 'PlayerController.games'
 
 };
