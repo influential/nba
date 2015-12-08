@@ -6,7 +6,7 @@ var http = require("http");
 
 module.exports = {
 	
-	salary2014: function(req, res) {
+	salary: function(req, res) {
 
 		var months = [10,11,12,1,2,3,4];
 		var days = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];
@@ -34,16 +34,11 @@ module.exports = {
 									var first = section[3].split(",")[1].trim();
 									var last = section[3].split(",")[0].trim();
 									var full = first + " " + last;
-									//var compare = full.replace(/[^A-Za-z]/g, "").toLowerCase();
 									var salary = parseInt(section[6].replace(/\$|,/g, ""));
-									Player.find({name:full}).exec(function createCB(err, created) {
-										if(created) {
+									Player.find({name:full}).exec(function createCB(err, found) {
+										if(found) {
 											var playerID = created.playerID;
-											Salary.create({date:date, playerID:playerID, salary:salary}).exec(function(err, created) {
-												console.log("Entry: " + created.id);
-											});
-										} else {
-											console.log("Couldn't Find: " + full);
+											Salary.create({date:date, playerID:playerID, salary:salary}).exec(function(err, created) {});
 										}
 									});
 								}
@@ -55,15 +50,6 @@ module.exports = {
 				});
 			}
 		}
-	},
-
-	salary2015: function(req, res) {
-		//PHO->PHX
-		//NOR->NOP
-		//example of creating entry
-		Player.create({playerID:123, team:"NOR", name:"hi"}).exec(function(err, created) {
-			console.log("Entry: " + created.id);
-		});
 	}
 
 };
