@@ -1,0 +1,68 @@
+<div class="container" ng-controller="NBAController as player">
+    <div class="jumbotron">
+        <h1 align="center">NBA Application</h1>
+        <br>
+        <div id="nba-form" class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+             
+            </div>
+        </div>
+    </div>
+	<div>
+		<label>
+			Team Filter
+		</label>
+		<select>
+			<option value="any">Any</option>
+			<option value="atlantahawks">Atlanta Hawks</option>
+			<option value="bostonceltics">Boston Celtics</option>
+			<option value="brooklynnets">Brooklyn Nets</option>
+			<option value="charlottebobcats">Charlotte Bobcats</option>
+			<option value="chicagobulls">Chicago Bulls</option>
+			<option value="clevelandcavaliers">Cleveland Cavaliers</option>
+			<option value="dallasmavericks">Dallas Mavericks</option>
+			<option value="denvernuggets">Denver Nuggets</option>
+			<option value="detroitpistons">Detroit Pistons</option>
+			<option value="goldenstatewarriors">Golden State Warriors</option>
+			<option value="houstonrockets">Houston Rockets</option>
+			<option value="indianapacers">Indiana Pacers</option>
+			<option value="laclippers">LA Clippers</option>
+			<option value="lalakers">LA Lakers</option>
+			<option value="memphisgrizzlies">Memphis Grizzlies</option>
+			<option value="miamiheat">Miami Heat</option>
+			<option value="milwaukeebucks">Milwaukee Bucks</option>
+			<option value="minnesotatimberwolves">Minnesota Timberwolves</option>
+			<option value="neworleanshornets">New Orleans Hornets</option>
+			<option value="newyorkknicks">New York Knicks</option>
+			<option value="oklahomacitythunder">Oklahoma City Thunder</option>
+			<option value="orlandomagic">Orlando Magic</option>
+			<option value="philadelphiasixers">Philadelphia Sixers</option>
+			<option value="phoenixsuns">Phoenix Suns</option>
+			<option value="portlandtrailblazers">Portland Trail Blazers</option>
+			<option value="sacramentokings">Sacramento Kings</option>
+			<option value="sanantoniospurs">San Antonio Spurs</option>
+			<option value="torontoraptors">Toronto Raptors</option>
+			<option value="utahjazz">Utah Jazz</option>
+			<option value="washingtonwizards">Washington Wizards</option>
+		</select>
+	</div>
+	<div>
+		<label>
+			Type Filter
+		</label>
+		<select>
+			<option value="pointstosalary">Points / Salary</option>
+			<option value="salary">Salary</option>
+			<option value="points">Points</option>
+		</select>
+	</div>
+    <div id="nba-list" class="row">
+        <div class="col-sm-4 col-sm-offset-4">
+            <div class="checkbox" ng-repeat="singlePlayer in players">
+                <div>
+                    {{ singleTodo.value }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

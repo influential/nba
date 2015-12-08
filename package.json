@@ -6,6 +6,9 @@
   "keywords": [],
   "dependencies": {
     "dustjs-linkedin": "^2.7.2",
+	  "bower": "^1.4.1",
+    "ejs": "~0.8.4",
+    "forever": "^0.11.1",
     "grunt": "0.4.2",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-coffee": "~0.10.1",
@@ -23,7 +26,8 @@
     "rc": "~0.5.0",
     "sails": "~0.11.2",
     "sails-disk": "~0.10.0",
-    "sails-mongo": "^0.11.4"
+    "sails-mongo": "^0.11.4",
+    "vo": "^1.0.3"
   },
   "scripts": {
     "debug": "node debug app.js",

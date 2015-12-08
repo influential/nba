@@ -6,6 +6,12 @@ var Nightmare = require('nightmare');
 var vo = require('vo');
 
 module.exports = {
+	
+	getPlayers: function(req, res) {
+        NBAService.getPlayers(function(players) {
+            res.json(players);
+        });
+    },
 
 	reference: function(req, res) {
 

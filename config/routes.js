@@ -10,6 +10,8 @@ module.exports.routes = {
 
   '/player' : 'PlayerController.reference',
 
-  '/games' : 'PlayerController.games'
+  '/games' : 'PlayerController.games', 
+
+  '/': { view: 'homepage' }
 
 };
