@@ -8,9 +8,9 @@ module.exports.routes = {
 
   '/salary': 'SalaryController.salary',
 
-  '/player' : 'PlayerController.reference',
+  '/player' : 'PlayerController.players',
 
-  '/games' : 'PlayerController.games', 
+  '/games' : 'GameController.games', 
 
   '/': { view: 'homepage' }
 
