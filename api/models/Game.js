@@ -6,6 +6,8 @@ module.exports = {
 
 	attributes: {
 
+		gameID: 'integer',
+
 		home: 'string',
 
   		away: 'string',
