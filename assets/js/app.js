@@ -38,7 +38,7 @@ nbaApp.controller('NBAController', ['$scope', '$rootScope', 'NBAService', functi
 			}
 		}
 	}
-	console.log($scope.salaries);
+	console.log($scope.players);
   });
  
 }]);

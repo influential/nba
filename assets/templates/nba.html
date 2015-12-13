@@ -9,6 +9,10 @@ body {
   background: #FFFFBB;
 }
 
+ul#salaries li {
+    display:inline;
+}
+
 .right {
   float: right;
 }
@@ -42,7 +46,7 @@ ul {
   border-right: none;
 }
 
-li {
+li#test {
   list-style: none;
   background-color: rgba(0, 0, 0, 0.05);
   background-image: 
@@ -164,15 +168,17 @@ li {
     <div id="nba-list" class="row">
         <div class="col-sm-4 col-sm-offset-4">
 		<ul id="player_ul">
-			<li ng-repeat="player in players | filter:query | filter:textQuery">
+			<li id="test" ng-repeat="player in players | filter:query | filter:textQuery">
 			  playerID: {{player.playerID}}<br/>
 			  name: {{player.name}}<br/>
 			  teams: {{player.teams.join(", ")}}<br/>
 			  traded: {{player.traded}}<br/>
-			  salary: {{player.salary[0].salary}}<br/>
-			  <li ng-repeat="salary in player.salary">
-				salary: {{salary.salary}} <br/>
-			  </li>
+			  salaries: 
+			  <ul id="salaries" >
+				  <li id="salaries_item" ng-repeat="salary in player.salary" >
+					{{salary.salary}} {{salary.date}},
+				  </li>
+			  </ul>
 			</li>
 		</ul>
         </div>
