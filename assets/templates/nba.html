@@ -38,7 +38,7 @@ ul#salaries li {
 ul {
   margin: 0 auto;
   padding: 0;
-  max-height: 800px;
+  max-height: 680px;
   overflow-y: auto;
   border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 5px 5px 0 5px;
@@ -113,10 +113,13 @@ li#test {
 
 <div class="container" ng-controller="NBAController as player">
     <div class="jumbotron">
-        <h1 align="center">NBA Application</h1>
         <br>
     </div>
-	<input type="text" id="textQuery" ng-model="textQuery"/>
+	<h2 >Total Filters</h2>
+	<label>
+		Text Filter
+	</label>
+	<input type="text" id="textQuery" ng-model="textQuery"/><br>
 	<div>
 		<label>
 			Team Filter
@@ -165,17 +168,28 @@ li#test {
 			<option value="points">Points</option>
 		</select>
 	</div>
+	<br>
+	<h2>Salary Filters</h2>
+	<label>
+		Max Salaries
+	</label>
+	<input type="number" ng-init="maxSal=100" min="0" max="100" id="maxSal" ng-model="maxSal"/><br>
+	<label>
+		Text Filter
+	</label>
+	<input type="text" id="textQuery" ng-model="textQuery"/><br>
     <div id="nba-list" class="row">
         <div class="col-sm-4 col-sm-offset-4">
 		<ul id="player_ul">
-			<li id="test" ng-repeat="player in players | filter:query | filter:textQuery">
+			<li id="test" ng-repeat="player in players | filter:query | filter:textQuery" >
 			  playerID: {{player.playerID}}<br/>
 			  name: {{player.name}}<br/>
 			  teams: {{player.teams.join(", ")}}<br/>
 			  traded: {{player.traded}}<br/>
+			  max salary: {{player.maxSalary}}<br/>
 			  salaries: 
 			  <ul id="salaries" >
-				  <li id="salaries_item" ng-repeat="salary in player.salary" >
+				  <li id="salaries_item" ng-repeat="salary in player.salary | limitTo:maxSal" >
 					{{salary.salary}} {{salary.date}},
 				  </li>
 			  </ul>

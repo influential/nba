@@ -26,9 +26,16 @@ nbaApp.controller('NBAController', ['$scope', '$rootScope', 'NBAService', functi
   NBAService.getSalaries().then(function(response) {
     $scope.salaries = response;
 	$scope.players.salary = [];
+	for (var j = 0; j < $scope.players.length; ++j) {
+		$scope.players[j].maxSalary = 0;
+	}
+
 	for (var i = 0; i < $scope.salaries.length; ++i) {
 		for (var j = 0; j < $scope.players.length; ++j) {
 			if ($scope.players[j].playerID === $scope.salaries[i].playerID){
+				if ($scope.players[j].maxSalary < $scope.salaries[i].salary){
+					$scope.players[j].maxSalary = $scope.salaries[i].salary;
+				}	
 				if ($scope.players[j].salary == undefined){
 					$scope.players[j].salary = [$scope.salaries[i]];
 				}
