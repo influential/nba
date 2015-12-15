@@ -75,18 +75,12 @@ module.exports = {
 				})(function (err, result) {
 					console.log(result);
 					if(result < 1231) return gameLoop(result);
-					else return;
 				});
-				return;
 			});
 		}
 
 		//gameLoop(1);
 		return res.send(200);
-	},
-
-	checkGames: function(req, res) {
-		//check
 	}
 	
 };
