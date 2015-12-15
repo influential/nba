@@ -8,6 +8,12 @@ var moment = require('moment');
 
 module.exports = {
 	
+	getSalary: function(req, res) {
+        NBAService.getSalary(function(salaries) {
+            res.json(salaries);
+        });
+    },
+	
 	scrapeSalaries: function(req, res) {
 
 		function insertSalary(entry) {
