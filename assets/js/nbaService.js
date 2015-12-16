@@ -18,6 +18,26 @@ nbaApp.service('NBAService', function($http, $q) {
         defer.reject(err);
       });
       return defer.promise;
+    },
+
+    'getGames': function() {
+      var defer = $q.defer();
+      $http.get('/game/getGames').success(function(resp){
+        defer.resolve(resp);
+      }).error( function(err) {
+        defer.reject(err);
+      });
+      return defer.promise;
+    },
+
+    'getPerformances': function() {
+      var defer = $q.defer();
+      $http.get('/performance/getPerformances').success(function(resp){
+        defer.resolve(resp);
+      }).error( function(err) {
+        defer.reject(err);
+      });
+      return defer.promise;
     }
 }});
   

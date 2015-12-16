@@ -13,39 +13,53 @@ nbaApp.config(['$routeProvider',
   }]);
 
 nbaApp.controller('NBAController', ['$scope', '$rootScope', 'NBAService', function($scope, $rootScope, NBAService) {
-  $scope.formData = {};
-  $scope.players = [];
-  $scope.salaries = [];
 
-  NBAService.getPlayers().then(function(response) {
-    $scope.players = response;
-	$scope.players.salary = [];
-	console.log($scope.players);
-  });
-  
-  NBAService.getSalaries().then(function(response) {
-    $scope.salaries = response;
-	$scope.players.salary = [];
-	for (var j = 0; j < $scope.players.length; ++j) {
-		$scope.players[j].maxSalary = 0;
-	}
+	$scope.formData = {};
+	$scope.players = [];
+	$scope.salaries = [];
+	$scope.performances = [];
+	$scope.games = [];
 
-	for (var i = 0; i < $scope.salaries.length; ++i) {
-		for (var j = 0; j < $scope.players.length; ++j) {
-			if ($scope.players[j].playerID === $scope.salaries[i].playerID){
-				if ($scope.players[j].maxSalary < $scope.salaries[i].salary){
-					$scope.players[j].maxSalary = $scope.salaries[i].salary;
-				}	
-				if ($scope.players[j].salary == undefined){
-					$scope.players[j].salary = [$scope.salaries[i]];
-				}
-				else{
-					$scope.players[j].salary.push($scope.salaries[i]);
+	NBAService.getPerformances().then(function(response) {
+
+    	$scope.performances = response.slice(0, 1000); //Too many performances, so we are taking just 10%;
+
+    	NBAService.getGames().then(function(response) {
+	    	$scope.games = response;
+	    	for (var i = 0; i < $scope.performances.length; i++) {
+		    	for(var m = 0; m < $scope.games.length; m++) {
+					if($scope.games[m].gameID == $scope.performances[i].gameID) {
+						$scope.performances[i].game = $scope.games[m];
+						break;
+					}
 				}
 			}
-		}
-	}
-	console.log($scope.players);
-  });
+	  	});
+
+    	NBAService.getPlayers().then(function(response) {
+	    	$scope.players = response;
+	    	for (var i = 0; i < $scope.performances.length; i++) {
+		    	for(var j = 0; j < $scope.players.length; j++) {
+					if($scope.players[j].playerID == $scope.performances[i].playerID) {
+						$scope.performances[i].player = $scope.players[j];
+						break;
+					}
+				}
+			}
+	  	});
+
+	  	/*NBAService.getSalaries().then(function(response) {
+	    	$scope.salaries = response;
+	    	for (var i = 0; i < $scope.performances.length; i++) {
+				for(var k = 0; k < $scope.salaries.length; k++) {
+					if($scope.salaries[k].playerID == $scope.performances[i].playerID && $scope.salaries[k].month == $scope.performances[i].game.date) {
+						$scope.performances[i].salary = $scope.salaries[k].salary;
+						break;
+					}
+				}
+			}
+	  	});*/
+
+  	});
  
 }]);

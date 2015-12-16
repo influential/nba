@@ -3,10 +3,16 @@
 *************************/
 
 var Nightmare = require('nightmare');
-var async = require('async')
+var async = require('async');
 var vo = require('vo');
 
 module.exports = {
+
+	getPerformances: function(req, res) {
+        NBAService.getPerformances(function(performances) {
+            res.json(performances);
+        });
+    },
 	
 	performances: function(req, res) {
 

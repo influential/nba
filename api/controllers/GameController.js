@@ -8,6 +8,12 @@ var moment = require('moment');
 
 module.exports = {
 
+	getGames: function(req, res) {
+        NBAService.getGames(function(games) {
+            res.json(games);
+        });
+    },
+
 	scrapeGames: function(req, res) {
 
 		function gameLoop(id) {

@@ -1,200 +1,104 @@
-<style>
-html, body {
-  height: 100%;
-}
-
-body {
-  font-family: calibri light;
-  margin: 0 auto;
-  background: #FFFFBB;
-}
-
-ul#salaries li {
-    display:inline;
-}
-
-.right {
-  float: right;
-}
-
-.top {
-  margin-top: -30px;
-}
-
-#notebooks {
-  background: whitesmoke;
-  position: absolute;
-  left: 50%;
-  margin-left: -175px;
-  margin-top: 35px;
-  width: 350px;
-  padding: 15px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
-  box-shadow: inset 1px 1px 0 white;
-  max-height: 450px;
-}
-
-ul {
-  margin: 0 auto;
-  padding: 0;
-  max-height: 680px;
-  overflow-y: auto;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 5px 5px 0 5px;
-  border-left: none;
-  border-right: none;
-}
-
-li#test {
-  list-style: none;
-  background-color: rgba(0, 0, 0, 0.05);
-  background-image: 
-    linear-gradient(
-      90deg,
-      #FFD32E 10px,
-      #EEE 10px,
-      #EEE 11px,
-      transparent 11px);
-  padding: 10px 15px 10px 25px;
-  border: 1px solid #CCC;
-  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.5);
-  margin-bottom: 5px;
-  width: 100%;
-  box-sizing: border-box;
-  cursor: pointer;
-  border-radius: 3px;
-}
-
-#query {
-  width: 100%;
-  box-sizing: border-box;
-  font-size: 19px;
-  padding: 5px;
-  font-family: calibri light;
-  margin-bottom: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
-  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1);
-}
-
-#notebooks span {
-  display: block;
-  position: absolute;
-  background: #FFD32E;
-  bottom: -35px;
-  left: -1px;
-  width: 360px;
-  border-radius: 0 0 5px 5px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: inset 1px 1px rgba(255, 255, 255, 0.5);
-}
-
-#notebooks select {
-  width: 120px;
-  margin-left: 230px;
-  margin-top: -45px;
-  border-radius: 0 3px 3px 0;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-left: 1px solid rgba(0, 0, 0, 0.1);
-  position: absolute;
-  padding: 7.5px;
-  box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.1);
-}
-
-#notebooks select:focus, #query:focus {
-  border: 1px solid #FFD32E;
-  box-shadow: 0 0 10px rgba(255, 255, 0, 0.1);
-  outline: none;
-}
-</style>
-
-<div class="container" ng-controller="NBAController as player">
-    <div class="jumbotron">
-        <br>
-    </div>
-	<h2 >Total Filters</h2>
-	<label>
-		Text Filter
-	</label>
-	<input type="text" id="textQuery" ng-model="textQuery"/><br>
-	<div>
-		<label>
-			Team Filter
-		</label>
-		<select ng-model="query">
-			<option value="">Any</option>
-			<option value="ATL">Atlanta Hawks</option>
-			<option value="BOS">Boston Celtics</option>
-			<option value="BKN">Brooklyn Nets</option>
-			<option value="CHA">Charlotte Bobcats</option>
-			<option value="CHI">Chicago Bulls</option>
-			<option value="CLE">Cleveland Cavaliers</option>
-			<option value="DAL">Dallas Mavericks</option>
-			<option value="DEN">Denver Nuggets</option>
-			<option value="DET">Detroit Pistons</option>
-			<option value="GSW">Golden State Warriors</option>
-			<option value="HOU">Houston Rockets</option>
-			<option value="IND">Indiana Pacers</option>
-			<option value="LAC">LA Clippers</option>
-			<option value="LAL">LA Lakers</option>
-			<option value="MEM">Memphis Grizzlies</option>
-			<option value="MIA">Miami Heat</option>
-			<option value="MIL">Milwaukee Bucks</option>
-			<option value="MIN">Minnesota Timberwolves</option>
-			<option value="NOP">New Orleans Pelicans</option>
-			<option value="NYK">New York Knicks</option>
-			<option value="OKC">Oklahoma City Thunder</option>
-			<option value="ORL">Orlando Magic</option>
-			<option value="PHI">Philadelphia Sixers</option>
-			<option value="PHX">Phoenix Suns</option>
-			<option value="POR">Portland Trail Blazers</option>
-			<option value="SAC">Sacramento Kings</option>
-			<option value="SAS">San Antonio Spurs</option>
-			<option value="TOR">Toronto Raptors</option>
-			<option value="UTA">Utah Jazz</option>
-			<option value="WAS">Washington Wizards</option>
-		</select>
-	</div>
-	<div>
-		<label>
-			Type Filter
-		</label>
-		<select>
-			<option value="pointstosalary">Points / Salary</option>
-			<option value="salary">Salary</option>
-			<option value="points">Points</option>
-		</select>
-	</div>
-	<br>
-	<h2>Salary Filters</h2>
-	<label>
-		Max Salaries
-	</label>
-	<input type="number" ng-init="maxSal=100" min="0" max="100" id="maxSal" ng-model="maxSal"/><br>
-	<label>
-		Text Filter
-	</label>
-	<input type="text" id="textQuery" ng-model="textQuery"/><br>
-    <div id="nba-list" class="row">
-        <div class="col-sm-4 col-sm-offset-4">
-		<ul id="player_ul">
-			<li id="test" ng-repeat="player in players | filter:query | filter:textQuery" >
-			  playerID: {{player.playerID}}<br/>
-			  name: {{player.name}}<br/>
-			  teams: {{player.teams.join(", ")}}<br/>
-			  traded: {{player.traded}}<br/>
-			  max salary: {{player.maxSalary}}<br/>
-			  salaries: 
-			  <ul id="salaries" >
-				  <li id="salaries_item" ng-repeat="salary in player.salary | limitTo:maxSal" >
-					{{salary.salary}} {{salary.date}},
-				  </li>
-			  </ul>
-			</li>
-		</ul>
-        </div>
-    </div>
-</div>
+<html>
+     <head>
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+          <style>
+          th, td {
+               text-align: center;
+          }
+          </style>
+     </head>
+     <div class="container-fluid" ng-controller="NBAController as player">
+          <div class="col-md-12">
+               <div class="jumbotron">
+                    <h1>Hey Professor Mitra</h1>
+                    <p>The data takes a long time to load, so be patient, there's a lot of it, we are already using just 10% of data scraped</p>
+                    <p>Check out our writeup for more details on what this data is and how we got it</p>
+               </div>
+               <div class="panel panel-default">
+                    <div class="panel-body">
+                         <label>
+                         Name: 
+                         </label>
+                         <input type="text" id="nameQuery" ng-model="nameQuery"/>
+                         <label>
+                         Team: 
+                         </label> 
+                         <select ng-model="teamQuery">
+                              <option value="">Any</option>
+                              <option value="ATL">Atlanta Hawks</option>
+                              <option value="BOS">Boston Celtics</option>
+                              <option value="BKN">Brooklyn Nets</option>
+                              <option value="CHA">Charlotte Bobcats</option>
+                              <option value="CHI">Chicago Bulls</option>
+                              <option value="CLE">Cleveland Cavaliers</option>
+                              <option value="DAL">Dallas Mavericks</option>
+                              <option value="DEN">Denver Nuggets</option>
+                              <option value="DET">Detroit Pistons</option>
+                              <option value="GSW">Golden State Warriors</option>
+                              <option value="HOU">Houston Rockets</option>
+                              <option value="IND">Indiana Pacers</option>
+                              <option value="LAC">LA Clippers</option>
+                              <option value="LAL">LA Lakers</option>
+                              <option value="MEM">Memphis Grizzlies</option>
+                              <option value="MIA">Miami Heat</option>
+                              <option value="MIL">Milwaukee Bucks</option>
+                              <option value="MIN">Minnesota Timberwolves</option>
+                              <option value="NOP">New Orleans Pelicans</option>
+                              <option value="NYK">New York Knicks</option>
+                              <option value="OKC">Oklahoma City Thunder</option>
+                              <option value="ORL">Orlando Magic</option>
+                              <option value="PHI">Philadelphia Sixers</option>
+                              <option value="PHX">Phoenix Suns</option>
+                              <option value="POR">Portland Trail Blazers</option>
+                              <option value="SAC">Sacramento Kings</option>
+                              <option value="SAS">San Antonio Spurs</option>
+                              <option value="TOR">Toronto Raptors</option>
+                              <option value="UTA">Utah Jazz</option>
+                              <option value="WAS">Washington Wizards</option>
+                         </select>
+                    </div>
+               </div>
+               <table class="table table-hover">
+                    <tr>
+                         <th>Name</th>
+                         <th>Game</th>
+                         <th>Score</th>
+                         <th>Date</th>
+                         <th>Attendance</th>
+                         <th>Minutes</th>
+                         <th>FG</th>
+                         <th>3PT</th>
+                         <th>FT</th>
+                         <th>Points</th>
+                         <th>Rebounds</th>
+                         <th>Assists</th>
+                         <th>Steals</th>
+                         <th>Turnovers</th>
+                         <th>Blocks</th>
+                         <th>Fouls</th>
+                         <th>+/-</th>
+                    </tr>
+                    <tr ng-repeat="performance in performances | filter:{game:teamQuery} | filter:nameQuery | limitTo:100" >
+                         <td>{{performance.player.name}}</td>
+                         <td>{{performance.game.away}}@{{performance.game.home}}</td>
+                         <td>{{performance.game.score[0]}}-{{performance.game.score[1]}}</td>
+                         <td>{{performance.game.date | date:'yyyy-MM-dd'}}</td>
+                         <td>{{performance.game.attendance}}</td>
+                         <td>{{performance.time / 60 | number:0 }}:{{performance.time % 60}}</td>
+                         <td>{{performance.fgm}}/{{performance.fga}}</td>
+                         <td>{{performance.tpm}}/{{performance.tpa}}</td>
+                         <td>{{performance.ftm}}/{{performance.fta}}</td>
+                         <td>{{performance.pts}}</td>
+                         <td>{{performance.oreb + performance.dreb}}</td>
+                         <td>{{performance.ast}}</td>
+                         <td>{{performance.stl}}</td>
+                         <td>{{performance.tov}}</td>
+                         <td>{{performance.blk}}</td>
+                         <td>{{performance.pf}}</td>
+                         <td>{{performance.pm}}</td>
+                    </tr>
+               </table>
+          </div>
+     </div>
+</html>

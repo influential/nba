@@ -10,5 +10,17 @@ module.exports = {
       if(err) throw err;
       next(salaries);
     });
+  },
+  getGames: function(next) {
+    Game.find().exec(function(err, games) {
+      if(err) throw err;
+      next(games);
+    });
+  },
+  getPerformances: function(next) {
+    Performance.find().exec(function(err, performances) {
+      if(err) throw err;
+      next(performances);
+    });
   }
 };
